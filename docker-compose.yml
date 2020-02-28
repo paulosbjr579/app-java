@@ -14,6 +14,7 @@ services:
 
   api-client:
     container_name: api-client
+    hostname: api-client
     image: api-client/docker
     restart: always
     build:
@@ -26,7 +27,8 @@ services:
       - api-build
     ports:
       - 8080:8080
-
+    networks:
+      - app-gateway
 
   mysql-db-java:
     container_name: mysql-db-java
@@ -37,7 +39,14 @@ services:
       - MYSQL_DATABASE=bhut
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - app-gateway
 
 volumes:
   m2-repository:
   dbdata:
+
+networks:
+  app-gateway:
+    external: true
+
