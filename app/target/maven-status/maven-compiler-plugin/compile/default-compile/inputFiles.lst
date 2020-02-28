@@ -1,0 +1,4 @@
+/build/src/main/java/com/crud/client/controller/ClientController.java
+/build/src/main/java/com/crud/client/repository/ClientRepository.java
+/build/src/main/java/com/crud/client/model/Client.java
+/build/src/main/java/com/crud/client/ClientApplication.java

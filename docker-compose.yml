@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  api-build:
+    container_name: api-build
+    image: api-build/docker
+    build:
+      context: .
+      dockerfile: docker/build/Dockerfile
+    volumes:
+      - m2-repository:/root/.m2/repository
+      - ./app:/build
+
+  api-client:
+    container_name: api-client
+    image: api-client/docker
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    environment:
+      JAVA_OPTS: "-Duser.timezone=GMT-3"
+      MEMORY_JVM: "-Xss2G -Xmx4G"
+    ports:
+      - 8080:8080
+
+
+  mysql-db-java:
+    container_name: mysql-db-java
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bhut
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  m2-repository:
+  dbdata:

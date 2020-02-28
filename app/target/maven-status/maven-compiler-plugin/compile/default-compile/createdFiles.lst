@@ -1,0 +1,4 @@
+com/crud/client/controller/ClientController.class
+com/crud/client/ClientApplication.class
+com/crud/client/model/Client.class
+com/crud/client/repository/ClientRepository.class
